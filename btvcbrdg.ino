@@ -9,7 +9,6 @@ const String WIFI_PASSWORD = "";
 const String HOSTNAME = "btvcbrdg";
 const char* USERNAME = "btvcbrdg";
 const char* PASSWORD = "btvcbrdg";
-const int BAUD_RATE = 115200;
 
 // Server object
 ESP8266WebServer server(80);
@@ -17,7 +16,7 @@ ESP8266WebServer server(80);
 // Setup function
 void setup(void) {
     // Initialize serial and WiFi connection
-    Serial.begin(BAUD_RATE);
+    Serial.begin(115200);
     Serial.setTimeout(10000);
     Serial.readString();
     Serial.setTimeout(1000);
@@ -45,7 +44,6 @@ void setup(void) {
             if (server.hasArg("command")) {
                 Serial.print(server.arg("command"));
                 Serial.print('\n');
-                Serial.readStringUntil('\n');
                 content = Serial.readStringUntil('\x1a');
             }
             server.send(200, "text/plain", content);
