@@ -32,7 +32,7 @@ void setup(void) {
         if (!server.authenticate(USERNAME, PASSWORD)) {
             server.requestAuthentication();
         } else {
-            String content = "<!DOCTYPE html><html lang=\"en\"><head><title>btvcbrdg</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"locxter\"><meta name=\"description\" content=\"This is an ESP8266 bridge for communicating to Neato Botvac robot vacuums over the network.\"><link rel=\" stylesheet\" href=\"https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css\"></head><body><header><h1>btvcbrdg</h1></header><main><form method=\"post\"><label for=\"command\">Command:</label><input id=\"command\" type=\"text\" name=\"command\"><input type=\"submit\" value=\"Send\"></form></main><footer><p>2022 locxter</p></footer></body></html>";
+            String content = "<!DOCTYPE html><html lang=\"en\"><head><title>btvcbrdg</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"locxter\"><meta name=\"description\" content=\"This is an ESP8266 bridge for communicating to Neato Botvac robot vacuums over the network.\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css\"></head><body><header><h1>btvcbrdg</h1></header><main><form method=\"post\"><label for=\"command\">Command:</label><input id=\"command\" type=\"text\" name=\"command\"><input type=\"submit\" value=\"Send\"></form></main><footer><p>2022 locxter</p></footer></body></html>";
             server.send(200, "text/html", content);
         }
     });
