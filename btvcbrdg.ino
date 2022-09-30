@@ -1,10 +1,11 @@
+#include <LittleFS.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-// WiFi, user authentication and serial related constants
-const String WIFI_SSID = "";
+// WiFi and user authentication related constants
+const String SSID = "";
 const String WIFI_PASSWORD = "";
 const String HOSTNAME = "btvcbrdg";
 const char* USERNAME = "btvcbrdg";
@@ -15,13 +16,15 @@ ESP8266WebServer server(80);
 
 // Setup function
 void setup(void) {
+    // Initialize filesystem 
+    LittleFS.begin();
     // Initialize serial and WiFi connection
     Serial.begin(115200);
     Serial.setTimeout(10000);
     Serial.readString();
     Serial.setTimeout(1000);
     WiFi.mode(WIFI_STA);
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    WiFi.begin(SSID, WIFI_PASSWORD);
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
     }
@@ -32,7 +35,12 @@ void setup(void) {
         if (!server.authenticate(USERNAME, PASSWORD)) {
             server.requestAuthentication();
         } else {
-            String content = "<!DOCTYPE html><html lang=\"en\"><head><title>btvcbrdg</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"locxter\"><meta name=\"description\" content=\"This is an ESP8266 bridge for communicating to Neato Botvac robot vacuums over the network.\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css\"></head><body><header><h1>btvcbrdg</h1></header><main><form method=\"post\"><label for=\"command\">Command:</label><input id=\"command\" type=\"text\" name=\"command\"><input type=\"submit\" value=\"Send\"></form></main><footer><p>2022 locxter</p></footer></body></html>";
+            File file = LittleFS.open("/index.html", "r");
+            String content;
+            while (file.available()) {
+                content += (char) file.read();
+            }
+            file.close();
             server.send(200, "text/html", content);
         }
     });
@@ -49,6 +57,7 @@ void setup(void) {
             server.send(200, "text/plain", content);
         }
     });
+    server.serveStatic("/styles/water.min.css", LittleFS, "/styles/water.min.css");
     server.onNotFound([&]() {
         server.send(404, "text/plain", "Resource not found");
     });
