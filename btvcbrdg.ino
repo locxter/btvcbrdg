@@ -5,9 +5,9 @@
 #include <ESP8266mDNS.h>
 
 // WiFi and user authentication related constants
-const String SSID = "";
-const String WIFI_PASSWORD = "";
-const String HOSTNAME = "btvcbrdg";
+const char* SSID = "";
+const char* WIFI_PASSWORD = "";
+const char* HOSTNAME = "btvcbrdg";
 const char* USERNAME = "btvcbrdg";
 const char* PASSWORD = "btvcbrdg";
 

@@ -22,6 +22,7 @@
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/sdk/lwip2/include",
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/cores/esp8266",
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/variants/generic",
+                "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries/LittleFS/src",
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries/ESP8266WiFi/src",
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries/ESP8266WebServer/src",
                 "/home/locxter/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries/ESP8266mDNS/src",
