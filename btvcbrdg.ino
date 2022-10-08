@@ -48,13 +48,15 @@ void setup(void) {
         if (!server.authenticate(USERNAME, PASSWORD)) {
             server.requestAuthentication();
         } else {
-            String content = "";
             if (server.hasArg("command")) {
+                String content = "";
                 Serial.print(server.arg("command"));
                 Serial.print('\n');
                 content = Serial.readStringUntil('\x1a');
+                server.send(200, "text/plain", content);
+            } else {
+                server.send(404, "text/plain", "Invalid request");
             }
-            server.send(200, "text/plain", content);
         }
     });
     server.serveStatic("/styles/water.min.css", LittleFS, "/styles/water.min.css");
