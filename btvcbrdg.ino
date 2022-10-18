@@ -16,7 +16,7 @@ ESP8266WebServer server(80);
 
 // Setup function
 void setup(void) {
-    // Initialize filesystem 
+    // Initialize filesystem
     LittleFS.begin();
     // Initialize serial and WiFi connection
     Serial.begin(115200);
